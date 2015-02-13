@@ -1,0 +1,48 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import math
+
+def is_prime(num):
+    sqrt = math.sqrt(num)
+    if sqrt == int(sqrt):
+        return False
+    for n in xrange(2, int(sqrt)):
+        if num % n == 0:
+            return False
+    return True
+
+def prime(minn, maxn):
+    if maxn > minn:
+        retval = []
+        for n in xrange(minn, maxn+1):
+            if is_prime(n):
+                retval.append(n)
+        return retval
+    else:
+        n = minn
+        while True:
+            if is_prime(n):
+                return [n]
+            n += 1
+
+
+SAITEIKINGAKU=30000
+
+def main():
+    import sys
+    argv = sys.argv
+    argc = len(argv)
+    minn = int(argv[1]) if argc >= 2 else SAITEIKINGAKU
+    maxn = int(argv[2]) if argc >= 3 else -1
+    kingaku = prime(minn, maxn)
+    if len(kingaku) == 0:
+        result = u"適当な金額はありません。"
+    else:
+        kingaku = map(lambda n: u"%d円"%n, kingaku)
+        result = reduce(lambda a, b: "%s\n%s"%(a,b), kingaku)
+
+    print result
+
+if __name__ == '__main__':
+    main()
