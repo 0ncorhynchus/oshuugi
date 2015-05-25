@@ -7,7 +7,7 @@ def is_prime(num):
     sqrt = math.sqrt(num)
     if sqrt == int(sqrt):
         return False
-    for n in xrange(2, int(sqrt)):
+    for n in range(2, int(sqrt)):
         if num % n == 0:
             return False
     return True
@@ -15,7 +15,7 @@ def is_prime(num):
 def prime(minn, maxn):
     if maxn > minn:
         retval = []
-        for n in xrange(minn, maxn+1):
+        for n in range(minn, maxn+1):
             if is_prime(n):
                 retval.append(n)
         return retval
@@ -30,6 +30,7 @@ def prime(minn, maxn):
 SAITEIKINGAKU=30000
 
 def main():
+    from functools import reduce
     import sys
     argv = sys.argv
     argc = len(argv)
@@ -42,7 +43,7 @@ def main():
         kingaku = map(lambda n: u"%d円"%n, kingaku)
         result = reduce(lambda a, b: "%s\n%s"%(a,b), kingaku)
 
-    print result
+    print(result)
 
 if __name__ == '__main__':
     main()
